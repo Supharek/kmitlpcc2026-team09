@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 54" fill="none">
+  <!-- Red Stylized Geometric Icon -->
+  <path d="M8 44L26 8L44 44L34 44L26 26L18 44H8Z" fill="#C62828" />
+  <path d="M18 44L26 30L34 44H18Z" fill="#8E1B1B" />
+  
+  <!-- INTOUCH Text in Dark -->
+  <text x="54" y="31" font-family="'Prompt', system-ui, -apple-system, sans-serif" font-weight="800" font-size="28" fill="#111827" letter-spacing="0.5">
+    INTOUCH
+  </text>
+  
+  <!-- CO., LTD. Subtext -->
+  <text x="56" y="46" font-family="'Prompt', system-ui, -apple-system, sans-serif" font-weight="500" font-size="10" fill="#6B7280" letter-spacing="2">
+    CO., LTD.
+  </text>
+</svg>

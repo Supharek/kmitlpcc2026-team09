@@ -42,4 +42,6 @@
 
 | # | สั่งอะไรไป | agent ทำอะไรผิด | จับได้ยังไง | แก้ยังไง |
 |---|---|---|---|---|
-| 1 | | | | |
+| 1 | สร้าง Zod schema ใน `lib/validations/lead.ts` | ลืมแปลง `undefined` เป็น `null` ใน `.transform()` ทำให้ field optional คืน undefined | รัน `vitest` แล้ว TC05 ไม่ผ่าน (`expected undefined to be null`) | เพิ่มเงื่อนไข `val === "" || val === undefined ? null : val` |
+| 2 | สร้างหน้า `app/page.tsx` | ใส่ข้อความ `// โซลูชันระดับมืออาชีพ` ตรง ๆ ใน JSX children | รัน `next lint` แล้วติดกฎ `react/jsx-no-comment-textnodes` | ครอบข้อความด้วยเครื่องหมายปีกกา `{"// โซลูชันระดับมืออาชีพ"}` |
+| 3 | สร้าง `lib/supabase.ts` | เรียก `createClient("", "")` โดยไม่มี fallback เมื่อยังไม่ได้เซ็ต `.env.local` | รัน `next build` แล้ว throw `Error: supabaseUrl is required.` | กำหนดค่า fallback placeholder URL/key เพื่อให้ build ผ่านได้แม้ยังไม่ต่อ Supabase จริง |
