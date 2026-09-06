@@ -49,8 +49,12 @@
 5. **ห้ามเพิ่ม dependency โดยไม่ถาม** ทุกครั้งต้องขออนุญาตพร้อมเหตุผล
 6. **ห้ามแก้ `docs/BRIEF.md`** — เป็นอินพุตจาก Instructor
 7. **ห้าม `output: "export"` ใน `next.config.ts`** — จะทำให้ `app/api/**` ใช้ไม่ได้
-8. **ห้ามใช้อะไรที่ต้องมี connection ค้าง** — `pg.Pool`, `mysql2` pool, WebSocket server, cron ใน process
+8. **ห้ามใช้อะไรที่ต้องมี connection ค้าง ในโค้ดที่ deploy** — `pg.Pool`, `mysql2` pool, WebSocket server, cron ใน process
    Vercel เป็น serverless ทุก request อาจเกิด instance ใหม่ (เหตุผลเต็มอยู่ใน `docs/BRIEF.md` ส่วนที่ 3)
+
+   > **ข้อยกเว้นเดียว:** `scripts/migrate.mjs` ใช้ `pg` ได้
+   > เพราะเป็น CLI ที่รันในเครื่องแล้วจบ ไม่ได้ deploy ขึ้น Vercel
+   > **ห้ามเอา `pg` ไปใช้ใน `app/**` หรือ `lib/**` เด็ดขาด** — ตรงนั้นใช้ `@supabase/supabase-js` เท่านั้น
 
 ---
 
