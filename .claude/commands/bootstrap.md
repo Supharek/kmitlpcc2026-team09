@@ -11,8 +11,10 @@ repo นี้ยังไม่มีโค้ด งานของคุณ�
 ## สิ่งที่ต้องสร้าง
 
 1. `package.json` — Next.js 15 (App Router) + React 19 + TypeScript + Tailwind v4 + Zod + `@supabase/supabase-js` + Vitest
+   devDependency เพิ่ม `pg` (ใช้เฉพาะ script migrate ข้อ 8)
    scripts: `dev`, `build`, `start`, `lint`, `typecheck`, `test`
-   และ `verify` = `typecheck && lint && test && build`
+   `verify` = `typecheck && lint && test && build`
+   `migrate` = `node --env-file=.env.local scripts/migrate.mjs`
 2. `tsconfig.json` (strict, alias `@/*`) · `next.config.ts` (**ห้ามใส่ `output: "export"`**) · `postcss.config.mjs`
 3. `app/layout.tsx` + `app/globals.css` — ใส่ design token จาก `docs/BRIEF.md` ส่วนที่ 2 เป็น CSS variable
    อย่าลืม `line-height` ภาษาไทยขั้นต่ำ 1.7
@@ -21,6 +23,14 @@ repo นี้ยังไม่มีโค้ด งานของคุณ�
 6. `lib/supabase.ts` — server client ด้วย `SUPABASE_SERVICE_ROLE_KEY`
    บรรทัดแรกต้องเป็น `import "server-only";`
 7. โฟลเดอร์เปล่าพร้อม `.gitkeep`: `components/ui/` · `components/sections/` · `db/migrations/` · `tests/` · `public/brand/`
+8. `scripts/migrate.mjs` — CLI รันไฟล์ SQL ใน `db/migrations/` เข้าฐานข้อมูล
+   - อ่าน `process.env.POSTGRES_URL` (มาจาก `--env-file=.env.local`) ถ้าไม่มีให้แจ้งเป็นภาษาไทยแล้วออกด้วย exit code 1
+   - ใช้ `pg` (`new Client`, ไม่ใช่ `Pool`) เชื่อมด้วย `ssl: { rejectUnauthorized: false }`
+   - สร้างตาราง `_migrations (name text primary key, applied_at timestamptz default now())` ถ้ายังไม่มี
+   - อ่านไฟล์ `db/migrations/*.sql` **เรียงตามชื่อ** แล้วรันเฉพาะไฟล์ที่ยังไม่เคยรัน
+   - แต่ละไฟล์รันใน transaction เดียว ถ้าพังให้ rollback แล้วบอกชื่อไฟล์กับ error
+   - พิมพ์ผลเป็นภาษาไทย เช่น `รันแล้ว: 001_init.sql` / `ข้าม (รันไปแล้ว): 001_init.sql`
+   - ปิด connection ทุกกรณี
 
 ## ห้ามทำในขั้นนี้
 - **ห้ามสร้างหน้าอื่นนอกจาก `/`** — หน้าที่เหลือตาม `SPEC.md` §2.1 เป็นงานของ Frontend รอบถัดไป
