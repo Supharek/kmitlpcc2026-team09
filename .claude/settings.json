@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev)",
+      "Bash(npm run build)",
+      "Bash(npm run lint)",
+      "Bash(npm run test)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run verify)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git add:*)",
+      "Read(//**)",
+      "Edit(app/**)",
+      "Edit(components/**)",
+      "Edit(lib/**)",
+      "Edit(docs/**)",
+      "Edit(tests/**)",
+      "Edit(db/**)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.local)",
+      "Bash(git push:*)",
+      "Bash(git commit --no-verify:*)",
+      "Bash(rm -rf:*)",
+      "Bash(npx vercel:*)"
+    ]
+  }
+}
