@@ -129,75 +129,78 @@ export default function HomePage() {
 
       <main className="flex-grow">
         {/* ================= HERO SECTION ================= */}
-        <section className="relative overflow-hidden bg-neutral-950 text-white">
-          <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[560px] lg:min-h-[620px]">
-            {/* Left Side: Dark Red Gradient with Typography */}
-            <div className="lg:col-span-6 xl:col-span-5 bg-gradient-to-br from-[#1F0508] via-[#4D0D14] to-[#7A151E] p-8 sm:p-12 lg:p-16 flex flex-col justify-center relative z-10">
-              <div className="space-y-6 max-w-xl">
-                {/* Brand Badge */}
-                <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#C62828] text-white text-xs font-semibold tracking-wider uppercase">
-                  <span>APP INTOUCH COMPANY LIMITED</span>
-                </div>
+        <section className="bg-neutral-950 text-white py-6 md:py-10">
+          <div className="container-custom">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-neutral-800/80 grid grid-cols-1 lg:grid-cols-12 min-h-[520px] lg:min-h-[580px] relative">
+              {/* Left Side: Dark Red Gradient with Typography */}
+              <div className="lg:col-span-6 xl:col-span-5 bg-gradient-to-br from-[#1F0508] via-[#4D0D14] to-[#7A151E] p-8 sm:p-12 lg:p-14 flex flex-col justify-center relative z-10">
+                <div className="space-y-6 max-w-xl">
+                  {/* Brand Badge */}
+                  <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#C62828] text-white text-xs font-semibold tracking-wider uppercase shadow-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                    <span>APP INTOUCH COMPANY LIMITED</span>
+                  </div>
 
-                {/* Main Heading */}
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
-                  พัฒนาไอเดียของคุณ{" "}
-                  <span className="text-[#FF5252] block sm:inline">
-                    ให้กลายเป็นเว็บไซต์ที่ใช้งานได้จริง
-                  </span>
-                </h1>
+                  {/* Main Heading */}
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
+                    พัฒนาไอเดียของคุณ{" "}
+                    <span className="text-[#FF5252] block sm:inline">
+                      ให้กลายเป็นเว็บไซต์ที่ใช้งานได้จริง
+                    </span>
+                  </h1>
 
-                {/* Subtitle */}
-                <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
-                  เราคือบริษัทพัฒนาเว็บไซต์และแอปพลิเคชัน ด้วยทีมงานมืออาชีพที่พร้อมดูแลคุณในทุกขั้นตอน ตั้งแต่เริ่มต้นจนถึงการใช้งานจริง
-                </p>
+                  {/* Subtitle */}
+                  <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                    เราคือบริษัทพัฒนาเว็บไซต์และแอปพลิเคชัน ด้วยทีมงานมืออาชีพที่พร้อมดูแลคุณในทุกขั้นตอน ตั้งแต่เริ่มต้นจนถึงการใช้งานจริง
+                  </p>
 
-                {/* CTA Buttons */}
-                <div className="pt-3 flex flex-wrap items-center gap-4">
-                  <Link href="/services">
-                    <button
-                      type="button"
-                      className="px-6 py-3 rounded-full bg-[#C62828] hover:bg-[#B71C1C] text-white text-sm font-semibold transition-all shadow-md flex items-center space-x-2 cursor-pointer"
-                    >
-                      <span>ดูบริการของเรา</span>
-                      <span>→</span>
-                    </button>
-                  </Link>
+                  {/* CTA Buttons */}
+                  <div className="pt-3 flex flex-wrap items-center gap-4">
+                    <Link href="/services">
+                      <button
+                        type="button"
+                        className="px-6 py-3 rounded-full bg-[#C62828] hover:bg-[#B71C1C] text-white text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow-red-900/50 hover:scale-105 active:scale-95 flex items-center space-x-2 cursor-pointer"
+                      >
+                        <span>ดูบริการของเรา</span>
+                        <span className="transition-transform group-hover:translate-x-1">→</span>
+                      </button>
+                    </Link>
 
-                  <Link href="/contact">
-                    <button
-                      type="button"
-                      className="px-6 py-3 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 text-white text-sm font-medium transition-all backdrop-blur-sm cursor-pointer"
-                    >
-                      ติดต่อเรา
-                    </button>
-                  </Link>
+                    <Link href="/contact">
+                      <button
+                        type="button"
+                        className="px-6 py-3 rounded-full bg-black/40 hover:bg-black/70 border border-white/20 hover:border-white/40 text-white text-sm font-medium transition-all duration-300 backdrop-blur-sm hover:scale-105 active:scale-95 cursor-pointer"
+                      >
+                        ติดต่อเรา
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Right Side: Hero Coding Laptop Image & Floating Stats Widget */}
-            <div className="lg:col-span-6 xl:col-span-7 relative min-h-[380px] lg:min-h-full">
-              <Image
-                src="/images/hero_laptop.jpg"
-                alt="การพัฒนาเว็บไซต์และระบบซอฟต์แวร์ App InTouch"
-                fill
-                priority
-                className="object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 lg:bg-gradient-to-r lg:from-[#7A151E]/40 lg:via-transparent lg:to-black/30 pointer-events-none" />
+              {/* Right Side: Hero Coding Laptop Image & Floating Stats Widget */}
+              <div className="lg:col-span-6 xl:col-span-7 relative min-h-[360px] lg:min-h-full group overflow-hidden">
+                <Image
+                  src="/images/hero_laptop.jpg"
+                  alt="การพัฒนาเว็บไซต์และระบบซอฟต์แวร์ App InTouch"
+                  fill
+                  priority
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20 lg:bg-gradient-to-r lg:from-[#7A151E]/40 lg:via-transparent lg:to-black/30 pointer-events-none" />
 
-              {/* Floating Dark Glass Widget */}
-              <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 bg-neutral-900/90 backdrop-blur-md border border-white/10 rounded-2xl p-4 sm:p-5 text-white shadow-2xl flex items-center space-x-4 max-w-xs">
-                <div className="w-12 h-12 rounded-full bg-[#C62828] flex items-center justify-center shrink-0 shadow-inner">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-xs text-neutral-400 font-medium">ผู้ใช้งานเว็บไซต์</p>
-                  <p className="text-xl sm:text-2xl font-bold text-white tracking-wide">1,284 คน</p>
-                  <p className="text-[10px] text-neutral-400">(อัปเดตล่าสุด)</p>
+                {/* Floating Dark Glass Widget */}
+                <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 bg-neutral-900/90 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5 text-white shadow-2xl flex items-center space-x-4 max-w-xs hover:border-[#C62828]/50 hover:bg-neutral-900/95 transition-all duration-300 hover:scale-105 cursor-pointer">
+                  <div className="w-12 h-12 rounded-full bg-[#C62828] flex items-center justify-center shrink-0 shadow-inner">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs text-neutral-400 font-medium">ผู้ใช้งานเว็บไซต์</p>
+                    <p className="text-xl sm:text-2xl font-bold text-white tracking-wide">1,284 คน</p>
+                    <p className="text-[10px] text-neutral-400">(อัปเดตล่าสุด)</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -486,13 +489,13 @@ export default function HomePage() {
                 </Link>
 
                 <a
-                  href="tel:0812345678"
+                  href="tel:0622244897"
                   className="px-6 py-3 rounded-full bg-black/30 hover:bg-black/50 border border-white/20 text-white text-xs sm:text-sm font-medium transition-all backdrop-blur-sm flex items-center space-x-2 cursor-pointer"
                 >
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <span>081-234-5678</span>
+                  <span>062-224-4897 (คุณส้ม)</span>
                 </a>
               </div>
             </div>

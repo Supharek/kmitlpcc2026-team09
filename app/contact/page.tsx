@@ -41,18 +41,31 @@ export default function ContactPage() {
                 </h2>
 
                 <div className="space-y-6 text-sm">
+                  {/* Address */}
                   <div className="flex items-start space-x-3.5">
-                    <div className="w-9 h-9 rounded-lg bg-red-50 text-[var(--brand-primary)] flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-lg bg-red-50 text-[var(--brand-primary)] flex items-center justify-center shrink-0 mt-0.5">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="font-semibold text-[var(--brand-ink)]">บริษัท</p>
-                      <p className="text-[var(--brand-muted)] mt-0.5">App Intouch Co., Ltd.</p>
+                      <p className="font-semibold text-[var(--brand-ink)]">ที่ตั้งสำนักงาน</p>
+                      <a
+                        href="https://maps.google.com/?q=315+ถนนหมู่บ้านเศรษฐกิจ+แขวงบางแคเหนือ+เขตบางแค+กรุงเทพมหานคร+10160"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--brand-muted)] hover:text-[#C62828] transition-colors mt-0.5 block leading-relaxed group"
+                      >
+                        315 ถนนหมู่บ้านเศรษฐกิจ แขวงบางแคเหนือ เขตบางแค กรุงเทพมหานคร 10160
+                        <span className="block text-xs text-[#C62828] font-medium mt-1 group-hover:underline">
+                          📍 ดูบน Google Maps นำทาง →
+                        </span>
+                      </a>
                     </div>
                   </div>
 
+                  {/* Email */}
                   <div className="flex items-start space-x-3.5">
                     <div className="w-9 h-9 rounded-lg bg-red-50 text-[var(--brand-primary)] flex items-center justify-center shrink-0">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,32 +73,49 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <div>
-                      <p className="font-semibold text-[var(--brand-ink)]">อีเมล</p>
-                      <p className="text-[var(--brand-muted)] mt-0.5">ติดต่อผ่านแบบฟอร์มบนเว็บไซต์</p>
+                      <p className="font-semibold text-[var(--brand-ink)]">อีเมลฝ่ายขาย & โครงการ</p>
+                      <a
+                        href="mailto:sales@appintouch.net"
+                        className="text-[#C62828] font-medium hover:underline mt-0.5 block"
+                      >
+                        sales@appintouch.net
+                      </a>
                     </div>
                   </div>
 
+                  {/* Phone */}
                   <div className="flex items-start space-x-3.5">
-                    <div className="w-9 h-9 rounded-lg bg-red-50 text-[var(--brand-primary)] flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-lg bg-red-50 text-[var(--brand-primary)] flex items-center justify-center shrink-0 mt-0.5">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                     </div>
-                    <div>
-                      <p className="font-semibold text-[var(--brand-ink)]">โทรศัพท์</p>
-                      <p className="text-[var(--brand-muted)] mt-0.5">ติดต่อผ่านช่องทางของบริษัท</p>
+                    <div className="space-y-1">
+                      <p className="font-semibold text-[var(--brand-ink)]">เบอร์โทรศัพท์ติดต่อ</p>
+                      <p className="text-[var(--brand-muted)]">
+                        <a href="tel:0622244897" className="text-[#C62828] font-medium hover:underline">062-224-4897</a> (คุณส้ม)
+                      </p>
+                      <p className="text-[var(--brand-muted)]">
+                        <a href="tel:0622244795" className="text-[#C62828] font-medium hover:underline">062-224-4795</a> (คุณเล็ก)
+                      </p>
                     </div>
                   </div>
 
+                  {/* Working Hours */}
                   <div className="flex items-start space-x-3.5">
-                    <div className="w-9 h-9 rounded-lg bg-red-50 text-[var(--brand-primary)] flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-lg bg-red-50 text-[var(--brand-primary)] flex items-center justify-center shrink-0 mt-0.5">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <div>
                       <p className="font-semibold text-[var(--brand-ink)]">เวลาทำการ</p>
-                      <p className="text-[var(--brand-muted)] mt-0.5">วันจันทร์ - วันศุกร์ (09:00 - 18:00 น.)</p>
+                      <p className="text-[var(--brand-muted)] mt-0.5">
+                        วันจันทร์ - ศุกร์ เวลา 8:30 - 18:00 น.
+                      </p>
+                      <p className="text-xs text-neutral-400 mt-0.5">
+                        (หยุดวันเสาร์ - อาทิตย์ และวันหยุดนักขัตฤกษ์)
+                      </p>
                     </div>
                   </div>
                 </div>
