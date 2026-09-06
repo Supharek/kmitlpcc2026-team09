@@ -367,8 +367,6 @@ Admin Dashboard ต้องอ่านข้อมูลจาก Supabase Pos
 > ⚠️ ข้างล่างเป็น **แม่แบบ** ไม่ใช่คำตอบ — ทีมที่ sitemap ไม่มีหน้าแรกแบบนี้ ก็ต้องเขียนไม่เหมือน
 > ต้องครบ: **ทุกหน้า × (mobile 375px + desktop 1440px)**
 
-### `TODO ชื่อหน้า` — URL `TODO`
-
 **รูป**
 ## Breakpoints
 
@@ -590,7 +588,6 @@ Admin Dashboard ต้องอ่านข้อมูลจาก Supabase Pos
 | `Card` | `components/ui/Card.tsx` | `title`, `description`, `icon` | radius 12px |
 | `Header` | `components/sections/Header.tsx` | — | sticky + เมนู hamburger |
 | `Footer` | `components/sections/Footer.tsx` | — | |
-| TODO | | | |
 | `Input` | `components/ui/Input.tsx` | `label`, `name`, `type`, `placeholder`, `error` | ใช้กับฟอร์ม Contact และ Admin Login |
 | `Textarea` | `components/ui/Textarea.tsx` | `label`, `name`, `placeholder`, `error` | ใช้กรอกรายละเอียดโครงการ |
 | `Select` | `components/ui/Select.tsx` | `label`, `name`, `options`, `error` | ใช้เลือกบริการและงบประมาณ |
