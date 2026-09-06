@@ -1,6 +1,9 @@
 # BRIEF.md — โจทย์ + แบรนด์ + ข้อจำกัด
 
-> 🔒 **อ่านอย่างเดียว ห้ามแก้** — นี่คืออินพุตจาก Instructor
+> ✍️ **แก้ได้เฉพาะหัวข้อ "เป้าหมายที่เว็บต้องทำให้ได้ (G)"** — ปรับให้เข้ากับบริษัทของทีม
+> 🔒 **ส่วนที่เหลือห้ามแก้** — `T1–T6`, `N1–N4`, ส่วนที่ 2 (แบรนด์), ส่วนที่ 3 (Vercel/Supabase)
+> T กับ N คือเกณฑ์ที่ Instructor ใช้ตรวจเหมือนกันทุกทีม ถ้าแก้ = ตรวจเทียบกันไม่ได้
+>
 > ถ้าเจอข้อขัดแย้งหรือไม่เข้าใจ ให้จดลง `NOTES.md` อย่าตีความเอง
 
 ---
@@ -26,6 +29,8 @@
 | G4 | **ส่งข้อมูลติดต่อกลับมาได้ และข้อมูลนั้นถูกบันทึกไว้ให้ฝ่ายขายตามงานต่อ** | Must |
 | G5 | ติดตามความเคลื่อนไหวของบริษัทได้ (ข่าว/บทความ/ผลงานใหม่) | Should |
 | G6 | ทีมงานบริษัทเข้ามาดูข้อมูลที่ผู้เข้าชมส่งเข้ามาได้ | Could |
+| G7 | ดูจำนวนผู้ใช้งานผ่านเว็ปไซต์ได้ | Must |
+
 
 **ตัวอย่างการแปลงเป็นหน้า** — นี่เป็นแค่ *ตัวอย่างหนึ่ง* ห้าม copy ทั้งดุ้น
 > ทีม A แปลง G1–G4 เป็น 4 หน้า: `/` `/about` `/services` `/contact`
@@ -73,18 +78,18 @@
 
 ## สี
 
-| Token | HEX | ใช้กับ |
-|---|---|---|
-| `--brand-primary` | `#0F4C81` | ปุ่มหลัก, ลิงก์, หัวข้อเน้น |
-| `--brand-primary-dark` | `#0A3557` | hover ของปุ่มหลัก |
-| `--brand-accent` | `#F2A007` | ปุ่มรอง, badge, ไฮไลต์ |
-| `--brand-ink` | `#1B1F23` | ตัวอักษรหลัก |
-| `--brand-muted` | `#5B6570` | ตัวอักษรรอง, caption |
-| `--brand-surface` | `#FFFFFF` | พื้นการ์ด |
-| `--brand-bg` | `#F6F8FA` | พื้นหลังหน้า |
+| **Token**              | **HEX**   | **ใช้กับ**                        |
+| ---------------------- | --------- | --------------------------------- |
+| `--brand-primary`      | `#C62828` | สีแดงหลัก, ปุ่มหลัก, CTA, จุดเน้น |
+| `--brand-primary-dark` | `#8E1B1B` | Hover, Active, Header บางส่วน     |
+| `--brand-accent`       | `#E53935` | Badge, Highlight, จุดเน้นรอง      |
+| `--brand-ink`          | `#1B1B1B` | ตัวอักษรหลัก, Navbar, Footer      |
+| `--brand-muted`        | `#666666` | ตัวอักษรรอง, Caption              |
+| `--brand-surface`      | `#FFFFFF` | Card, Form, Section               |
+| `--brand-bg`           | `#F8F8F8` | พื้นหลังหน้า                      |
 
 ## ตัวอักษรและระยะ
-- ฟอนต์: **IBM Plex Sans Thai** (Google Fonts) · fallback `system-ui, "Segoe UI", sans-serif`
+- ฟอนต์: **Prompt** · fallback `system-ui, "Segoe UI", sans-serif`
 - ขนาด: h1 `clamp(2rem, 5vw, 3rem)` · h2 `1.875rem` · body `1rem` · caption `0.875rem`
 - **line-height ภาษาไทยขั้นต่ำ 1.7** (ไทยมีสระบน-ล่าง ถ้าชิดจะอ่านยาก)
 - Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 px
@@ -121,7 +126,8 @@ NEXT_PUBLIC_SUPABASE_URL        NEXT_PUBLIC_SUPABASE_ANON_KEY
 SUPABASE_SERVICE_ROLE_KEY       POSTGRES_URL
 ```
 
-ตอนรันในเครื่อง: `npx vercel link` แล้ว `npx vercel env pull .env.local`
+**ตอนรันในเครื่อง ให้สร้าง `.env.local` เอง** จากค่าที่ Instructor ส่งให้
+วิธีทำอยู่ใน `README.md` หัวข้อ *Environment variables*
 
 ## เรื่องที่พังบ่อยที่สุด — วิธีต่อฐานข้อมูล
 

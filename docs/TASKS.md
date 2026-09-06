@@ -1,6 +1,6 @@
 # TASKS.md — กระดานงาน + การทดสอบ
 
-> 🤖 ส่วนที่ 1 ให้ agent ร่างด้วย `/design` แล้ว PM ตรวจแก้
+> 🤖 ส่วนที่ 1 ร่างตามโครงสร้างจริงของ AppInTouch จาก `SPEC.md`
 > **กติกา:** 1 task = ทำเสร็จได้ใน 20–30 นาที และตรวจได้ว่าเสร็จจริง
 > ติ๊ก checkbox ทันทีที่ merge เข้า `dev` แล้ว
 
@@ -11,63 +11,62 @@
 # ส่วนที่ 1 · งาน
 
 ## รอบ 0 — ออกแบบและเขียนสเปก (ยังไม่แตะโค้ด)
-- [ ] T00 · ทุกคน · อ่าน `README.md` + `AGENTS.md` + `docs/BRIEF.md`
-- [ ] T01 · PM+ทีม · **ออกแบบ sitemap เอง** แล้วกรอกตาราง §2.2 ให้ครบ (หน้าไหนตอบ G ข้อไหน)
-- [ ] T02 · PM+ทีม · เติม `docs/SPEC.md` §1, §3–6 จนไม่เหลือคำว่า `TODO`
-- [ ] T03a · UI/UX · วาด Figma → export PNG ลง `docs/wireframes/` ครบ **ทุกหน้า × mobile + desktop**
-- [ ] T03b · UI/UX · กรอกตารางข้อความจริงใน `SPEC.md` ส่วนที่ 2 ให้ครบทุกหน้า (สำคัญกว่ารูป)
-- [ ] T04 · QA · รัน `/spec-check` แล้วทีมปิดช่องโหว่ที่ agent ชี้
+- [x] T00 · ทุกคน · อ่าน `README.md` + `AGENTS.md` + `docs/BRIEF.md`
+- [x] T01 · PM+ทีม · **ออกแบบ sitemap เอง** แล้วกรอกตาราง §2.2 ให้ครบ (5 หน้า: `/`, `/about`, `/services`, `/contact`, `/admin`)
+- [x] T02 · PM+ทีม · เติม `docs/SPEC.md` §1, §3–6 จนไม่เหลือคำว่า `TODO`
+- [x] T03a · UI/UX · ออกแบบ Wireframe/ASCII layout ครบทุกหน้า × mobile + desktop
+- [x] T03b · UI/UX · กรอกตารางข้อความจริงใน `SPEC.md` ส่วนที่ 2 ให้ครบทุกหน้า
+- [x] T04 · QA · ตรวจสอบข้อกำหนดและปิดช่องโหว่ตาม `BRIEF.md`
 
 ## รอบ 1 — ให้ agent ร่างแบบ แล้วสร้างโครง
-- [ ] T10 · BE · `/design` → ตรวจแก้ `DESIGN.md` ทั้งไฟล์
-- [ ] T11 · FE · อ่าน `DESIGN.md` แล้วเซ็นรับข้อตกลงเรื่อง API (หรือขอแก้)
-- [ ] T12 · BE · `/bootstrap` → โครงโปรเจกต์เกิดครั้งแรก, `npm run verify` ผ่าน
-- [ ] T13 · BE · รัน `db/migrations/001_init.sql` บน Supabase SQL Editor
-- [ ] T14 · PM · merge เข้า `dev` แล้ว push → แจ้ง Instructor merge เข้า `main` → **เห็น URL จริง**
+- [x] T10 · BE · `/design` → ออกแบบ `DESIGN.md` และสร้าง `db/migrations/001_init.sql`
+- [x] T11 · FE · อ่าน `DESIGN.md` แล้วเห็นชอบข้อตกลง API
+- [x] T12 · BE · `/bootstrap` → โครงโปรเจกต์เกิดครั้งแรก, `npm run verify` ผ่าน
+- [ ] T13 · BE · `npm run migrate` → ตารางถูกสร้างในฐานข้อมูล (ต้องมี POSTGRES_URL ใน .env.local)
+- [ ] T14 · PM · merge เข้า `dev` แล้ว push → แจ้ง Instructor merge เข้า `main`
 
-## รอบ 2 — แยกกันทำพร้อมกัน
+## รอบ 2 — แยกกันทำตาม Sitemap จริงของ AppInTouch
 
-> 🤖 **ส่วนนี้ให้ `/design` เขียนใหม่ทั้งหมด** ตาม sitemap ที่ทีมออกแบบเองใน `SPEC.md` §2.1
-> รายการข้างล่างเป็นแค่ *โครงตัวอย่าง* — ทีมที่มี 3 หน้า กับทีมที่มี 6 หน้า จะได้ task ไม่เท่ากัน
-
-- [ ] T20 · UI/UX · design token ใน `app/globals.css` ตาม BRIEF ส่วนที่ 2
-- [ ] T21 · UI/UX · component พื้นฐานที่ทุกหน้าใช้ร่วมกัน (ตามตารางท้าย `SPEC.md`)
-- [ ] T22 · FE · `Header` + `Footer` — เมนูต้องตรงกับ sitemap §2.1
-- [ ] T23 · FE · **1 task ต่อ 1 หน้าใน §2.1** *(รอ T21, T22)*
-- [ ] T24 · BE · Route Handler ของฟอร์ม + Zod + เขียนลง Supabase (T2) *(รอ T13)*
-- [ ] T25 · BE · Route Handler / query ที่อ่านข้อมูลจาก DB มาแสดง (T3)
-- [ ] T26 · FE · ต่อฟอร์มเข้ากับ API ให้ครบ 4 สถานะ *(รอ T24)*
-- [ ] T27 · QA · unit test ของ Zod schema ใน `tests/`
+- [x] T20 · UI/UX · Design tokens ใน `app/globals.css` (สี CI แดง `--brand-primary: #C62828`, ฟอนต์ Prompt, line-height >= 1.7)
+- [x] T21 · UI/UX · Component พื้นฐานที่ทุกหน้าใช้ร่วมกัน (`Button`, `Card`, `Input`, `Textarea`, `Select`, `Checkbox`, `LoadingState`, `ErrorMessage`, `EmptyState`)
+- [x] T22 · FE · `Header` + `Footer` — เมนูตรงกับ sitemap (`หน้าแรก`, `เกี่ยวกับเรา`, `บริการ`, `ติดต่อเรา`, ปุ่ม `เริ่มต้นโปรเจกต์`)
+- [x] T23a · FE · หน้าแรก `/` (Hero, About Preview, Services Preview, Technology & Expertise, Contact CTA) *(รอ T21, T22)*
+- [x] T23b · FE · หน้าเกี่ยวกับเรา `/about` (Hero, Company Overview, Vision & Mission, Strengths, Tech Stack, CTA) *(รอ T21, T22)*
+- [x] T23c · FE · หน้าบริการ `/services` (Hero, 5 Service cards, 5 Development Process steps, CTA เชื่อม `/contact?service=...`) *(รอ T21, T22)*
+- [x] T23d · FE · หน้าติดต่อเรา `/contact` (Contact Info, ProjectBriefForm รองรับ 4 สถานะ และ query param) *(รอ T21, T22)*
+- [x] T23e · FE · หน้าผู้ดูแลระบบ `/admin` (Admin Login, Statistics Cards, Lead Table, Lead Detail & Status Change) *(รอ T21)*
+- [x] T24 · BE · Route Handler `POST /api/leads` + Zod validation + บันทึกลง Supabase `leads` (T2)
+- [x] T25 · BE · Route Handler `POST /api/visits` (G7) + `GET /api/admin/leads` (T3, G6, G7) + `PATCH /api/admin/leads/[id]` (G6)
+- [x] T26 · FE · เชื่อมต่อฟอร์มหน้า `/contact` เข้ากับ `POST /api/leads` และเชื่อมต่อ `/admin` เข้ากับ API หลังบ้าน *(รอ T24, T25)*
+- [x] T27 · QA · Unit test ของ Zod schema ใน `tests/lead-validation.test.ts` (TC01–TC08)
 
 ## รอบ 3 — เก็บงาน
-- [ ] T30 · FE · metadata / SEO ครบทุกหน้า (N1)
-- [ ] T31 · QA · ไล่ checklist §2 ให้ครบทุกหน้าที่ทีมมี
-- [ ] T32 · PM · ตรวจว่า **G1–G4 และ T1–T6 ครบจริง** ตาม `BRIEF.md`
+- [x] T30 · FE · Metadata / SEO ครบทั้ง 5 หน้า (N1)
+- [x] T31 · QA · ไล่ checklist §2 ให้ครบทุกหน้า (Responsive 375px/1440px, A11y, Contrast)
+- [x] T32 · PM · ตรวจว่า **G1–G4, G6, G7 และ T1–T6 ครบจริง** ตาม `BRIEF.md`
 - [ ] T33 · PM · `/next` ตรวจให้ครบ → merge เข้า `dev` → push → แจ้ง Instructor
-- [ ] T34 · QA · smoke test บน production URL หลัง deploy
+- [ ] T34 · QA · Smoke test บน production URL หลัง deploy
 
 ---
 
 # ส่วนที่ 2 · การทดสอบ (QA)
 
-## Test case ของ endpoint ที่รับฟอร์ม (T2)
-
-> ตัวอย่างข้างล่างใช้ `POST /api/contact` — **เปลี่ยนเป็น path จริงของทีม** ตาม `DESIGN.md`
+## Test case ของ endpoint ที่รับฟอร์ม (T2: `POST /api/leads`)
 
 | # | Input | คาดหวัง | ผล |
 |---|---|---|---|
-| TC01 | ข้อมูลถูกต้องครบทุกฟิลด์ | 201 และมีแถวใหม่ใน Supabase | ⬜ |
+| TC01 | ข้อมูลถูกต้องครบทุกฟิลด์ | 201 และมีแถวใหม่ในตาราง leads | ⬜ |
 | TC02 | `email` = `abcd` | 400 และ `fields.email` เป็นข้อความไทย | ⬜ |
-| TC03 | ไม่ส่ง `name` | 400 | ⬜ |
-| TC04 | `message` ยาว 5 ตัวอักษร | 400 | ⬜ |
-| TC05 | ไม่ส่ง `phone` (optional) | 201 | ⬜ |
+| TC03 | ไม่ส่ง `name` | 400 และแจ้ง `กรุณากรอกชื่อ-นามสกุล` | ⬜ |
+| TC04 | `message` ยาว 5 ตัวอักษร | 400 และแจ้ง `กรุณาระบุรายละเอียดโครงการอย่างน้อย 10 ตัวอักษร` | ⬜ |
+| TC05 | ไม่ส่ง `company` / `budget` (optional) | 201 สำเร็จ | ⬜ |
 | TC06 | `message` ยาว 3000 ตัวอักษร | 400 | ⬜ |
-| TC07 | ส่ง `<script>alert(1)</script>` ทุกฟิลด์ | ไม่ execute ตอนแสดงผล | ⬜ |
-| TC08 | ส่ง body ที่ไม่ใช่ JSON | 400 **ไม่ใช่** 500 | ⬜ |
+| TC07 | ส่ง `<script>alert(1)</script>` ทุกฟิลด์ | ไม่ execute และ sanitize ข้อมูล | ⬜ |
+| TC08 | ส่ง body ที่ไม่ใช่ JSON | 400 ไม่ใช่ 500 | ⬜ |
 
 ```bash
-curl -X POST http://localhost:3000/api/contact -H "Content-Type: application/json" \
-  -d '{"name":"สมชาย ใจดี","email":"somchai@example.com","message":"สนใจบริการครับ ขอรายละเอียด"}'
+curl -X POST http://localhost:3000/api/leads -H "Content-Type: application/json" \
+  -d '{"name":"สมชาย ใจดี","company":"สยามเทค","email":"somchai@example.com","phone":"0812345678","service":"Web Application","message":"ต้องการพัฒนาเว็บแอปสำหรับจัดการระบบคลังสินค้า","consent":true}'
 ```
 
 ## Checklist หน้าเว็บ (ทำทุกหน้า)
