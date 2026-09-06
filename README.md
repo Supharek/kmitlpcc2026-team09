@@ -97,9 +97,6 @@ git push
 
 ## Environment variables
 
-> ❌ **อย่ารัน `npx vercel link` หรือ `npx vercel env pull`** — ใช้ไม่ได้
-> Vercel project อยู่ใต้บัญชีของ Instructor พวกคุณไม่มีสิทธิ์เข้าถึง
-
 **Instructor จะส่งค่า 3 ตัวนี้ให้ทีมของคุณ** เอามาสร้างไฟล์เอง
 
 1. สร้างไฟล์ชื่อ **`.env.local`** ไว้ที่โฟลเดอร์บนสุดของ repo (ระดับเดียวกับ `README.md`)

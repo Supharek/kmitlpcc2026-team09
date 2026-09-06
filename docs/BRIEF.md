@@ -121,8 +121,7 @@ NEXT_PUBLIC_SUPABASE_URL        NEXT_PUBLIC_SUPABASE_ANON_KEY
 SUPABASE_SERVICE_ROLE_KEY       POSTGRES_URL
 ```
 
-**ตอนรันในเครื่อง นักศึกษาต้องสร้าง `.env.local` เอง** จากค่าที่ Instructor ส่งให้
-`npx vercel link` / `vercel env pull` **ใช้ไม่ได้** เพราะ Vercel project อยู่ใต้บัญชี Instructor
+**ตอนรันในเครื่อง ให้สร้าง `.env.local` เอง** จากค่าที่ Instructor ส่งให้
 วิธีทำอยู่ใน `README.md` หัวข้อ *Environment variables*
 
 ## เรื่องที่พังบ่อยที่สุด — วิธีต่อฐานข้อมูล
