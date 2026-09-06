@@ -22,7 +22,7 @@
 - [ ] T10 · BE · `/design` → ตรวจแก้ `DESIGN.md` ทั้งไฟล์
 - [ ] T11 · FE · อ่าน `DESIGN.md` แล้วเซ็นรับข้อตกลงเรื่อง API (หรือขอแก้)
 - [ ] T12 · BE · `/bootstrap` → โครงโปรเจกต์เกิดครั้งแรก, `npm run verify` ผ่าน
-- [ ] T13 · BE · ต่อ DBeaver ตาม `README.md` แล้วรัน `db/migrations/001_init.sql`
+- [ ] T13 · BE · `npm run migrate` → ตารางถูกสร้างในฐานข้อมูล
 - [ ] T14 · PM · merge เข้า `dev` แล้ว push → แจ้ง Instructor merge เข้า `main` → **เห็น URL จริง**
 
 ## รอบ 2 — แยกกันทำพร้อมกัน

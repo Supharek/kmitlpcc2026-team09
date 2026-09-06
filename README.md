@@ -97,7 +97,7 @@ git push
 
 ## Environment variables
 
-**Instructor จะส่งค่า 3 ตัวนี้ให้ทีมของคุณ** เอามาสร้างไฟล์เอง
+**Instructor จะส่งค่า 4 ตัวนี้ให้ทีมของคุณ** เอามาสร้างไฟล์เอง
 
 1. สร้างไฟล์ชื่อ **`.env.local`** ไว้ที่โฟลเดอร์บนสุดของ repo (ระดับเดียวกับ `README.md`)
 2. วางค่าที่ได้รับลงไป หน้าตาแบบนี้
@@ -106,6 +106,7 @@ git push
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...
 SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOi...
+POSTGRES_URL=postgres://postgres.xxxx:...@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres?sslmode=require
 ```
 
 ชื่อตัวแปรทั้งหมดดูได้จาก `.env.example` (ไฟล์นั้นมีแต่ชื่อ ไม่มีค่าจริง)
@@ -120,23 +121,38 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOi...
 > ก่อน commit ทุกครั้งให้ `git status` ดูว่ามี `.env.local` โผล่มาไหม
 > ถ้าโผล่ = `.gitignore` โดนแก้ ให้แจ้ง Instructor ทันที
 
-## ต่อฐานข้อมูลด้วย DBeaver
+## สร้างตารางในฐานข้อมูล
 
-Backend ใช้รัน migration · QA ใช้ส่องข้อมูลที่ฟอร์มส่งเข้ามา
-**Instructor จะส่ง host / user / password ให้แยกต่างหาก**
+**ไม่ต้องติดตั้งโปรแกรมอะไรเพิ่ม ไม่ต้องเข้าหน้าเว็บ Supabase**
 
-| ช่อง | ค่า |
+หลังรัน `/design` จะได้ไฟล์ SQL ใน `db/migrations/` แล้วสั่ง:
+
+```bash
+npm run migrate
+```
+
+script จะรันไฟล์ SQL ทุกไฟล์เรียงตามชื่อ และ **จำว่าไฟล์ไหนรันไปแล้ว** สั่งซ้ำได้ไม่พัง
+
+| ผลที่เห็น | แปลว่า |
 |---|---|
-| Host | `aws-0-ap-southeast-1.pooler.supabase.com` |
-| Port | **`5432`** |
-| Database | `postgres` |
-| Username | `postgres.<project-ref>` (Instructor ส่งให้) |
-| Password | Instructor ส่งให้ |
-| SSL | require |
+| `รันแล้ว: 001_init.sql` | สร้างตารางสำเร็จ |
+| `ข้าม (รันไปแล้ว): 001_init.sql` | เคยรันแล้ว ไม่ทำซ้ำ |
+| `ไม่พบ POSTGRES_URL` | ยังไม่ได้ใส่ค่าใน `.env.local` |
 
-**ห้ามใช้พอร์ต `6543` กับ DBeaver** — พอร์ตนั้นเป็น transaction pooler ไว้ให้แอปใช้ ต่อ DBeaver แล้วจะเออเรอร์แปลก ๆ
+**แก้ schema ทีหลัง = เพิ่มไฟล์ใหม่** `002_xxx.sql`, `003_xxx.sql` แล้วรัน `npm run migrate` อีกครั้ง
+**ห้ามแก้ไฟล์เดิมที่รันไปแล้ว** เพราะ script จะข้ามให้
 
-**ห้ามใช้ host `db.xxxx.supabase.co`** — เป็น IPv6 อย่างเดียว เน็ตส่วนใหญ่ต่อไม่ติด
+### QA ตรวจข้อมูลยังไง
 
-**และห้ามเอา connection string นี้ไปใช้ในโค้ด** — โค้ดต้องเรียกผ่าน `@supabase/supabase-js` เท่านั้น
-เหตุผลอยู่ใน `docs/BRIEF.md` ส่วนที่ 3
+**ดูผ่านเว็บของตัวเอง** — เกณฑ์ T3 บังคับให้มีจุดที่อ่านข้อมูลจาก DB มาแสดงอยู่แล้ว
+ส่งฟอร์ม → เปิดหน้านั้น → เห็นข้อมูลใหม่ = ผ่าน
+
+การเทสผ่านหน้าเว็บจริงถูกต้องกว่าการไปส่องตารางตรง ๆ เพราะได้ทดสอบทั้งเส้นทาง
+
+### ถ้าอยากเปิดดูตารางตรง ๆ (ไม่บังคับ)
+
+ใช้ DBeaver ต่อด้วยค่าจาก `POSTGRES_URL` ได้ แต่ **ต้องเปลี่ยนพอร์ตเป็น `5432`**
+พอร์ต `6543` เป็น transaction pooler สำหรับแอป ต่อ DBeaver แล้วจะเออเรอร์แปลก ๆ
+
+**ห้ามเอา `POSTGRES_URL` ไปใช้ในโค้ดที่ deploy** — โค้ดในแอปต้องเรียกผ่าน `@supabase/supabase-js` เท่านั้น
+ใช้ได้เฉพาะใน `scripts/migrate.mjs` เหตุผลอยู่ใน `docs/BRIEF.md` ส่วนที่ 3
