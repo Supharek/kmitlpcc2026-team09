@@ -97,9 +97,49 @@ git push
 
 ## Environment variables
 
-```bash
-npx vercel link                    # ครั้งแรกครั้งเดียว
-npx vercel env pull .env.local     # ดึงค่าจาก Vercel มาใช้ในเครื่อง
+> ❌ **อย่ารัน `npx vercel link` หรือ `npx vercel env pull`** — ใช้ไม่ได้
+> Vercel project อยู่ใต้บัญชีของ Instructor พวกคุณไม่มีสิทธิ์เข้าถึง
+
+**Instructor จะส่งค่า 3 ตัวนี้ให้ทีมของคุณ** เอามาสร้างไฟล์เอง
+
+1. สร้างไฟล์ชื่อ **`.env.local`** ไว้ที่โฟลเดอร์บนสุดของ repo (ระดับเดียวกับ `README.md`)
+2. วางค่าที่ได้รับลงไป หน้าตาแบบนี้
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOi...
 ```
 
-**`.env.local` ห้าม commit เด็ดขาด**
+ชื่อตัวแปรทั้งหมดดูได้จาก `.env.example` (ไฟล์นั้นมีแต่ชื่อ ไม่มีค่าจริง)
+
+### กฎ 3 ข้อ ห้ามละเมิด
+
+1. **`.env.local` ห้าม commit เด็ดขาด** — `.gitignore` กันไว้ให้แล้ว **ห้ามไปแก้**
+2. **`SUPABASE_SERVICE_ROLE_KEY` ห้ามโพสต์ที่ไหนทั้งสิ้น** ห้ามใส่ในโค้ด ห้ามส่งในกลุ่ม
+   key ตัวนี้ข้ามระบบสิทธิ์ได้หมด ลบข้อมูลทั้งฐานได้
+3. **ห้ามใช้ใน Client Component** — ใช้ได้เฉพาะใน `app/api/**` ฝั่ง server เท่านั้น
+
+> ก่อน commit ทุกครั้งให้ `git status` ดูว่ามี `.env.local` โผล่มาไหม
+> ถ้าโผล่ = `.gitignore` โดนแก้ ให้แจ้ง Instructor ทันที
+
+## ต่อฐานข้อมูลด้วย DBeaver
+
+Backend ใช้รัน migration · QA ใช้ส่องข้อมูลที่ฟอร์มส่งเข้ามา
+**Instructor จะส่ง host / user / password ให้แยกต่างหาก**
+
+| ช่อง | ค่า |
+|---|---|
+| Host | `aws-0-ap-southeast-1.pooler.supabase.com` |
+| Port | **`5432`** |
+| Database | `postgres` |
+| Username | `postgres.<project-ref>` (Instructor ส่งให้) |
+| Password | Instructor ส่งให้ |
+| SSL | require |
+
+**ห้ามใช้พอร์ต `6543` กับ DBeaver** — พอร์ตนั้นเป็น transaction pooler ไว้ให้แอปใช้ ต่อ DBeaver แล้วจะเออเรอร์แปลก ๆ
+
+**ห้ามใช้ host `db.xxxx.supabase.co`** — เป็น IPv6 อย่างเดียว เน็ตส่วนใหญ่ต่อไม่ติด
+
+**และห้ามเอา connection string นี้ไปใช้ในโค้ด** — โค้ดต้องเรียกผ่าน `@supabase/supabase-js` เท่านั้น
+เหตุผลอยู่ใน `docs/BRIEF.md` ส่วนที่ 3
