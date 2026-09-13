@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 
 export interface SelectOption {
   value: string;
@@ -28,7 +28,8 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     },
     ref
   ) => {
-    const selectId = id || name || `select-${Math.random().toString(36).substring(2, 9)}`;
+    const generatedId = useId();
+    const selectId = id || name || generatedId;
 
     return (
       <div className="w-full">

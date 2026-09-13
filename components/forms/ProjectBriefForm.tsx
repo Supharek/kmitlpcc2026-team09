@@ -25,11 +25,16 @@ const budgetOptions = [
 ];
 
 const serviceQueryMap: Record<string, string> = {
+  // slugs from home page cards
   website: "Website Development",
   "web-application": "Web Application",
   "mobile-application": "Mobile Application",
   "ux-ui": "UX/UI Design",
   "customize-program": "Custom Software",
+  // slugs from services page buttons
+  "website-development": "Website Development",
+  "ux-ui-design": "UX/UI Design",
+  "custom-software": "Custom Software",
 };
 
 export function ProjectBriefForm() {
