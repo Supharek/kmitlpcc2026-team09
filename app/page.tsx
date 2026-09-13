@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { VisitTracker } from "@/components/analytics/VisitTracker";
+import { InteractiveCodeEditor } from "@/components/ui/InteractiveCodeEditor";
 
 export const metadata: Metadata = {
   title: "AppInTouch — พัฒนาไอเดียของคุณ ให้กลายเป็นเว็บไซต์ที่ใช้งานได้จริง",
@@ -16,6 +17,7 @@ const services = [
   {
     title: "Website Development",
     description: "พัฒนาเว็บไซต์องค์กร, เว็บไซต์ธุรกิจ และ E-Commerce",
+    contactSlug: "website",
     icon: (
       <svg className="w-5 h-5 text-[#C62828]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -25,6 +27,7 @@ const services = [
   {
     title: "Web Application",
     description: "พัฒนาระบบเว็บแอปพลิเคชันที่ตอบโจทย์ธุรกิจของคุณ",
+    contactSlug: "web-application",
     icon: (
       <svg className="w-5 h-5 text-[#C62828]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -34,6 +37,7 @@ const services = [
   {
     title: "Mobile Application",
     description: "พัฒนาแอปพลิเคชันบนมือถือทั้ง Android และ iOS",
+    contactSlug: "mobile-application",
     icon: (
       <svg className="w-5 h-5 text-[#C62828]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -43,6 +47,7 @@ const services = [
   {
     title: "UX/UI Design",
     description: "ออกแบบประสบการณ์ผู้ใช้ ให้ใช้งานง่ายและสวยงาม",
+    contactSlug: "ux-ui",
     icon: (
       <svg className="w-5 h-5 text-[#C62828]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -52,6 +57,7 @@ const services = [
   {
     title: "Customize Program",
     description: "พัฒนาระบบเฉพาะทาง ตามความต้องการของคุณ",
+    contactSlug: "customize-program",
     icon: (
       <svg className="w-5 h-5 text-[#C62828]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -129,75 +135,78 @@ export default function HomePage() {
 
       <main className="flex-grow">
         {/* ================= HERO SECTION ================= */}
-        <section className="relative overflow-hidden bg-neutral-950 text-white">
-          <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[560px] lg:min-h-[620px]">
-            {/* Left Side: Dark Red Gradient with Typography */}
-            <div className="lg:col-span-6 xl:col-span-5 bg-gradient-to-br from-[#1F0508] via-[#4D0D14] to-[#7A151E] p-8 sm:p-12 lg:p-16 flex flex-col justify-center relative z-10">
-              <div className="space-y-6 max-w-xl">
-                {/* Brand Badge */}
-                <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#C62828] text-white text-xs font-semibold tracking-wider uppercase">
-                  <span>APP INTOUCH COMPANY LIMITED</span>
-                </div>
+        <section className="bg-neutral-950 text-white py-6 md:py-10 overflow-hidden">
+          <div className="container-custom">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-neutral-800/80 grid grid-cols-1 lg:grid-cols-12 min-h-[520px] lg:min-h-[580px] relative">
+              {/* Left Side: Dark Red Gradient with Typography - Assemble from Left */}
+              <div className="lg:col-span-6 xl:col-span-5 bg-gradient-to-br from-[#1F0508] via-[#4D0D14] to-[#7A151E] p-8 sm:p-12 lg:p-14 flex flex-col justify-center relative z-10 animate-assemble-left">
+                <div className="space-y-6 max-w-xl">
+                  {/* Brand Badge */}
+                  <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#C62828] text-white text-xs font-semibold tracking-wider uppercase shadow-sm animate-assemble-scale anim-delay-75">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                    <span>APP INTOUCH COMPANY LIMITED</span>
+                  </div>
 
-                {/* Main Heading */}
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
-                  พัฒนาไอเดียของคุณ{" "}
-                  <span className="text-[#FF5252] block sm:inline">
-                    ให้กลายเป็นเว็บไซต์ที่ใช้งานได้จริง
-                  </span>
-                </h1>
+                  {/* Main Heading */}
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight animate-assemble-bottom anim-delay-150">
+                    พัฒนาไอเดียของคุณ{" "}
+                    <span className="text-[#FF5252] block sm:inline">
+                      ให้กลายเป็นเว็บไซต์ที่ใช้งานได้จริง
+                    </span>
+                  </h1>
 
-                {/* Subtitle */}
-                <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
-                  เราคือบริษัทพัฒนาเว็บไซต์และแอปพลิเคชัน ด้วยทีมงานมืออาชีพที่พร้อมดูแลคุณในทุกขั้นตอน ตั้งแต่เริ่มต้นจนถึงการใช้งานจริง
-                </p>
+                  {/* Subtitle */}
+                  <p className="text-neutral-300 text-sm sm:text-base leading-relaxed animate-assemble-bottom delay-250">
+                    เราคือบริษัทพัฒนาเว็บไซต์และแอปพลิเคชัน ด้วยทีมงานมืออาชีพที่พร้อมดูแลคุณในทุกขั้นตอน ตั้งแต่เริ่มต้นจนถึงการใช้งานจริง
+                  </p>
 
-                {/* CTA Buttons */}
-                <div className="pt-3 flex flex-wrap items-center gap-4">
-                  <Link href="/services">
-                    <button
-                      type="button"
-                      className="px-6 py-3 rounded-full bg-[#C62828] hover:bg-[#B71C1C] text-white text-sm font-semibold transition-all shadow-md flex items-center space-x-2 cursor-pointer"
-                    >
-                      <span>ดูบริการของเรา</span>
-                      <span>→</span>
-                    </button>
-                  </Link>
+                  {/* CTA Buttons */}
+                  <div className="pt-3 flex flex-wrap items-center gap-4 animate-assemble-bottom delay-350">
+                    <Link href="/services">
+                      <button
+                        type="button"
+                        className="px-6 py-3 rounded-full bg-[#C62828] hover:bg-[#B71C1C] text-white text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow-red-900/50 hover:scale-105 active:scale-95 flex items-center space-x-2 cursor-pointer"
+                      >
+                        <span>ดูบริการของเรา</span>
+                        <span className="transition-transform group-hover:translate-x-1">→</span>
+                      </button>
+                    </Link>
 
-                  <Link href="/contact">
-                    <button
-                      type="button"
-                      className="px-6 py-3 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 text-white text-sm font-medium transition-all backdrop-blur-sm cursor-pointer"
-                    >
-                      ติดต่อเรา
-                    </button>
-                  </Link>
+                    <Link href="/contact">
+                      <button
+                        type="button"
+                        className="px-6 py-3 rounded-full bg-black/40 hover:bg-black/70 border border-white/20 hover:border-white/40 text-white text-sm font-medium transition-all duration-300 backdrop-blur-sm hover:scale-105 active:scale-95 cursor-pointer"
+                      >
+                        ติดต่อเรา
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Right Side: Hero Coding Laptop Image & Floating Stats Widget */}
-            <div className="lg:col-span-6 xl:col-span-7 relative min-h-[380px] lg:min-h-full">
-              <Image
-                src="/images/hero_laptop.jpg"
-                alt="การพัฒนาเว็บไซต์และระบบซอฟต์แวร์ App InTouch"
-                fill
-                priority
-                className="object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 lg:bg-gradient-to-r lg:from-[#7A151E]/40 lg:via-transparent lg:to-black/30 pointer-events-none" />
+              {/* Right Side: Photorealistic Full-Screen Laptop Studio with Live Moving Code - Assemble from Right */}
+              <div className="lg:col-span-6 xl:col-span-7 relative min-h-[460px] sm:min-h-[500px] lg:min-h-[580px] p-4 sm:p-6 lg:p-8 flex items-center justify-center bg-gradient-to-br from-[#0B0D13] via-[#141824] to-[#1F070A] overflow-hidden animate-assemble-right anim-delay-100">
+                {/* Background ambient lighting */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-[#C62828]/15 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-10 -right-10 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Floating Dark Glass Widget */}
-              <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 bg-neutral-900/90 backdrop-blur-md border border-white/10 rounded-2xl p-4 sm:p-5 text-white shadow-2xl flex items-center space-x-4 max-w-xs">
-                <div className="w-12 h-12 rounded-full bg-[#C62828] flex items-center justify-center shrink-0 shadow-inner">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                  </svg>
+                {/* The Full MacBook Pro Device Frame with 100% Edge-to-Edge Code Display */}
+                <div className="w-full relative z-10">
+                  <InteractiveCodeEditor />
                 </div>
-                <div>
-                  <p className="text-xs text-neutral-400 font-medium">ผู้ใช้งานเว็บไซต์</p>
-                  <p className="text-xl sm:text-2xl font-bold text-white tracking-wide">1,284 คน</p>
-                  <p className="text-[10px] text-neutral-400">(อัปเดตล่าสุด)</p>
+
+                {/* Floating Dark Glass Widget - Assembles from Bottom-Right */}
+                <div className="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 bg-neutral-900/95 backdrop-blur-md border border-white/20 rounded-2xl p-3 sm:p-3.5 text-white shadow-2xl flex items-center space-x-3 max-w-[240px] sm:max-w-xs hover:border-[#C62828]/60 transition-all duration-300 hover:scale-105 cursor-pointer animate-assemble-bottom-right delay-300 z-30">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#C62828] flex items-center justify-center shrink-0 shadow-inner">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-[10px] sm:text-[11px] text-neutral-400 font-medium">ผู้ใช้งานเว็บไซต์</p>
+                    <p className="text-base sm:text-lg font-bold text-white tracking-wide">1,284 คน</p>
+                    <p className="text-[9px] sm:text-[10px] text-neutral-400">(อัปเดตล่าสุด)</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -205,9 +214,9 @@ export default function HomePage() {
         </section>
 
         {/* ================= SERVICES SECTION ================= */}
-        <section className="py-16 md:py-24 bg-white">
+        <section className="py-16 md:py-24 bg-white overflow-hidden">
           <div className="container-custom">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 animate-assemble-bottom delay-200">
               <div>
                 <span className="text-[#C62828] font-bold text-xs uppercase tracking-wider block mb-1">
                   บริการของเรา
@@ -230,44 +239,51 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* 5-Card Horizontal Grid */}
+            {/* 5-Card Horizontal Grid - Converging from Multiple Directions */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-              {services.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="group bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between"
-                >
-                  <div>
-                    {/* Circular Icon Container */}
-                    <div className="w-12 h-12 rounded-full border border-red-100 bg-red-50/50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-                      {item.icon}
+              {services.map((item, idx) => {
+                const assemblyClasses = [
+                  "animate-assemble-left anim-delay-150",
+                  "animate-assemble-top-left delay-200",
+                  "animate-assemble-bottom delay-250",
+                  "animate-assemble-top-right delay-300",
+                  "animate-assemble-right delay-350",
+                ];
+                return (
+                  <Link
+                    key={idx}
+                    href={`/contact?service=${item.contactSlug}`}
+                    className={`group bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm hover:shadow-md hover:border-red-200 transition-all duration-200 flex flex-col justify-between ${assemblyClasses[idx % assemblyClasses.length]}`}
+                  >
+                    <div>
+                      {/* Circular Icon Container */}
+                      <div className="w-12 h-12 rounded-full border border-red-100 bg-red-50/50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+                        {item.icon}
+                      </div>
+                      <h3 className="text-base font-bold text-neutral-900 mb-2 group-hover:text-[#C62828] transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs text-neutral-500 leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
-                    <h3 className="text-base font-bold text-neutral-900 mb-2 group-hover:text-[#C62828] transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-neutral-500 leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                  <div className="pt-6">
-                    <Link
-                      href="/services"
-                      className="text-xs font-semibold text-[#C62828] group-hover:translate-x-1 transition-transform inline-flex items-center"
-                    >
-                      →
-                    </Link>
-                  </div>
-                </div>
-              ))}
+                    <div className="pt-6">
+                      <span className="text-xs font-semibold text-[#C62828] group-hover:translate-x-1 transition-transform inline-flex items-center">
+                        →
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* ================= STATS RIBBON ================= */}
-        <section className="bg-gradient-to-r from-[#A81C24] via-[#8C141C] to-[#6E0E14] text-white py-12 md:py-14">
+        <section className="bg-gradient-to-r from-[#A81C24] via-[#8C141C] to-[#6E0E14] text-white py-12 md:py-14 overflow-hidden">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-4 space-y-1 text-center lg:text-left">
+              <div className="lg:col-span-4 space-y-1 text-center lg:text-left animate-assemble-left delay-200">
                 <p className="text-red-200 text-xs font-medium tracking-wide">
                   ตัวเลขที่สะท้อนความไว้วางใจ
                 </p>
@@ -280,30 +296,33 @@ export default function HomePage() {
               </div>
 
               <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-                {stats.map((stat, idx) => (
-                  <div key={idx} className="flex flex-col items-center space-y-2">
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-xs">
-                      {stat.icon}
+                {stats.map((stat, idx) => {
+                  const statDelays = ["delay-200", "delay-250", "delay-300", "delay-350"];
+                  return (
+                    <div key={idx} className={`flex flex-col items-center space-y-2 animate-assemble-bottom ${statDelays[idx % statDelays.length]}`}>
+                      <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-xs">
+                        {stat.icon}
+                      </div>
+                      <p className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                        {stat.number}
+                      </p>
+                      <p className="text-xs text-red-100 font-medium">
+                        {stat.label}
+                      </p>
                     </div>
-                    <p className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                      {stat.number}
-                    </p>
-                    <p className="text-xs text-red-100 font-medium">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
         </section>
 
         {/* ================= ABOUT SECTION ================= */}
-        <section className="py-16 md:py-24 bg-white">
+        <section className="py-16 md:py-24 bg-white overflow-hidden">
           <div className="container-custom">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              {/* Left Column: Office Meeting Image */}
-              <div className="lg:col-span-5 relative">
+              {/* Left Column: Office Meeting Image - Assembles from Bottom-Left */}
+              <div className="lg:col-span-5 relative animate-assemble-bottom-left delay-200">
                 <div className="relative h-[340px] sm:h-[420px] rounded-2xl overflow-hidden shadow-lg border border-neutral-100">
                   <Image
                     src="/images/about_office.jpg"
@@ -317,8 +336,8 @@ export default function HomePage() {
                 <div className="absolute -bottom-4 -right-4 w-28 h-28 bg-[#C62828]/10 rounded-2xl -z-10" />
               </div>
 
-              {/* Right Column: About Company & Features */}
-              <div className="lg:col-span-7 space-y-6">
+              {/* Right Column: About Company & Features - Assembles from Bottom-Right */}
+              <div className="lg:col-span-7 space-y-6 animate-assemble-bottom-right delay-250">
                 <div>
                   <span className="text-[#C62828] font-bold text-xs uppercase tracking-wider block mb-1">
                     เกี่ยวกับเรา
@@ -486,13 +505,13 @@ export default function HomePage() {
                 </Link>
 
                 <a
-                  href="tel:0812345678"
+                  href="tel:0622244897"
                   className="px-6 py-3 rounded-full bg-black/30 hover:bg-black/50 border border-white/20 text-white text-xs sm:text-sm font-medium transition-all backdrop-blur-sm flex items-center space-x-2 cursor-pointer"
                 >
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <span>081-234-5678</span>
+                  <span>062-224-4897 (คุณส้ม)</span>
                 </a>
               </div>
             </div>

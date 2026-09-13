@@ -32,7 +32,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-[#0A0A0A] border-b border-neutral-800 shadow-md">
+    <header className="sticky top-0 z-50 bg-[#0A0A0A] border-b border-neutral-800 shadow-md animate-assemble-top">
       <div className="container-custom h-[72px] flex items-center justify-between">
         {/* Logo - Authentic App InTouch Corporate Logo */}
         <Link href="/" className="flex items-center space-x-2 group">

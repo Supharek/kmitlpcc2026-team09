@@ -72,3 +72,172 @@
     padding-right: 2rem;
   }
 }
+
+/* ==========================================================================
+   Multi-Directional Assembly Animation System (Page Load Convergence)
+   ========================================================================== */
+
+@keyframes assemble-from-top {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -40px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes assemble-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes assemble-from-left {
+  0% {
+    opacity: 0;
+    transform: translate3d(-60px, 0, 0) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes assemble-from-right {
+  0% {
+    opacity: 0;
+    transform: translate3d(60px, 0, 0) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes assemble-from-top-left {
+  0% {
+    opacity: 0;
+    transform: translate3d(-40px, -30px, 0) rotate(-2deg) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes assemble-from-top-right {
+  0% {
+    opacity: 0;
+    transform: translate3d(40px, -30px, 0) rotate(2deg) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes assemble-from-bottom-left {
+  0% {
+    opacity: 0;
+    transform: translate3d(-40px, 30px, 0) rotate(-2deg) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes assemble-from-bottom-right {
+  0% {
+    opacity: 0;
+    transform: translate3d(40px, 30px, 0) rotate(2deg) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes assemble-scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-assemble-top {
+  animation: assemble-from-top 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-assemble-bottom {
+  animation: assemble-from-bottom 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-assemble-left {
+  animation: assemble-from-left 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-assemble-right {
+  animation: assemble-from-right 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-assemble-top-left {
+  animation: assemble-from-top-left 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-assemble-top-right {
+  animation: assemble-from-top-right 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-assemble-bottom-left {
+  animation: assemble-from-bottom-left 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-assemble-bottom-right {
+  animation: assemble-from-bottom-right 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-assemble-scale {
+  animation: assemble-scale-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Stagger delay utilities */
+.anim-delay-75 { animation-delay: 75ms; }
+.anim-delay-100 { animation-delay: 100ms; }
+.anim-delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-250 { animation-delay: 250ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-350 { animation-delay: 350ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-450 { animation-delay: 450ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+
+/* Accessibility: respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-assemble-top,
+  .animate-assemble-bottom,
+  .animate-assemble-left,
+  .animate-assemble-right,
+  .animate-assemble-top-left,
+  .animate-assemble-top-right,
+  .animate-assemble-bottom-left,
+  .animate-assemble-bottom-right,
+  .animate-assemble-scale {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
