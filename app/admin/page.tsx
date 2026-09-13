@@ -26,6 +26,8 @@ interface Lead {
 
 interface AdminStats {
   totalVisits: number;
+  rawVisits?: number;
+  baseVisits?: number;
   totalLeads: number;
   newLeads: number;
   inProgressLeads: number;
@@ -303,7 +305,11 @@ export default function AdminPage() {
               <p className="text-2xl sm:text-3xl font-extrabold text-[var(--brand-ink)] mt-2">
                 {stats.totalVisits.toLocaleString()}
               </p>
-              <p className="text-xs text-emerald-600 mt-1">บันทึกผ่าน site_visits</p>
+              <p className="text-xs text-emerald-600 mt-1">
+                {stats.rawVisits !== undefined
+                  ? `บันทึกผ่าน site_visits ${stats.rawVisits} ครั้ง (+ฐานเดิม ${stats.baseVisits ?? 1284})`
+                  : "บันทึกผ่าน site_visits"}
+              </p>
             </Card>
 
             <Card className="p-5">

@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useVisitorCount } from "@/components/analytics/VisitorContext";
 
 const navItems = [
   { label: "หน้าแรก", href: "/" },
@@ -14,22 +15,8 @@ const navItems = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [visitorCount, setVisitorCount] = useState<number>(1284);
+  const visitorCount = useVisitorCount();
   const pathname = usePathname();
-
-  useEffect(() => {
-    // Fetch live visit count from API
-    fetch("/api/visits")
-      .then((res) => res.json())
-      .then((res) => {
-        if (res && res.data && typeof res.data.count === "number" && res.data.count > 0) {
-          setVisitorCount(1284 + res.data.count);
-        }
-      })
-      .catch(() => {
-        setVisitorCount(1284);
-      });
-  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-[#0A0A0A] border-b border-neutral-800 shadow-md animate-assemble-top">

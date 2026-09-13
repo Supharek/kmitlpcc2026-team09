@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Prompt } from "next/font/google";
 import "./globals.css";
 import { PDPAConsentModal } from "@/components/common/PDPAConsentModal";
+import { VisitorProvider } from "@/components/analytics/VisitorContext";
 
 const promptFont = Prompt({
   weight: ["300", "400", "500", "600", "700"],
@@ -26,8 +27,10 @@ export default function RootLayout({
   return (
     <html lang="th" className={promptFont.variable}>
       <body className="min-h-screen bg-[var(--brand-bg)] text-[var(--brand-ink)] antialiased">
-        {children}
-        <PDPAConsentModal />
+        <VisitorProvider>
+          {children}
+          <PDPAConsentModal />
+        </VisitorProvider>
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase";
+import { calculateTotalVisits, BASE_VISITOR_COUNT } from "@/lib/constants/stats";
 
 export async function POST() {
   try {
@@ -12,12 +13,17 @@ export async function POST() {
     if (error) {
       // If DB is in test mode / not configured yet
       if (!process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY.includes("...")) {
+        const mockRawCount = 19;
         return NextResponse.json(
           {
             ok: true,
             data: {
               id: "mock-visit-" + Math.random().toString(36).substring(2, 9),
               createdAt: new Date().toISOString(),
+              count: calculateTotalVisits(mockRawCount),
+              totalVisits: calculateTotalVisits(mockRawCount),
+              rawCount: mockRawCount,
+              baseCount: BASE_VISITOR_COUNT,
             },
           },
           { status: 201 }
@@ -37,12 +43,24 @@ export async function POST() {
       );
     }
 
+    // Retrieve updated count after insertion
+    const { count: updatedCount } = await supabaseAdmin
+      .from("site_visits")
+      .select("*", { count: "exact", head: true });
+
+    const rawCount = updatedCount ?? 1;
+    const totalVisits = calculateTotalVisits(rawCount);
+
     return NextResponse.json(
       {
         ok: true,
         data: {
           id: data.id,
           createdAt: data.created_at,
+          count: totalVisits,
+          totalVisits,
+          rawCount,
+          baseCount: BASE_VISITOR_COUNT,
         },
       },
       { status: 201 }
@@ -73,22 +91,34 @@ export async function GET() {
       return NextResponse.json({
         ok: true,
         data: {
-          count: 0,
+          count: BASE_VISITOR_COUNT,
+          totalVisits: BASE_VISITOR_COUNT,
+          rawCount: 0,
+          baseCount: BASE_VISITOR_COUNT,
         },
       });
     }
 
+    const rawCount = count ?? 0;
+    const totalVisits = calculateTotalVisits(rawCount);
+
     return NextResponse.json({
       ok: true,
       data: {
-        count: count ?? 0,
+        count: totalVisits,
+        totalVisits,
+        rawCount,
+        baseCount: BASE_VISITOR_COUNT,
       },
     });
   } catch {
     return NextResponse.json({
       ok: true,
       data: {
-        count: 0,
+        count: BASE_VISITOR_COUNT,
+        totalVisits: BASE_VISITOR_COUNT,
+        rawCount: 0,
+        baseCount: BASE_VISITOR_COUNT,
       },
     });
   }

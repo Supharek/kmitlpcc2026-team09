@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase";
+import { calculateTotalVisits, BASE_VISITOR_COUNT } from "@/lib/constants/stats";
 
 export async function GET() {
   try {
@@ -50,7 +51,9 @@ export async function GET() {
           ok: true,
           data: {
             stats: {
-              totalVisits: 142,
+              totalVisits: calculateTotalVisits(19),
+              rawVisits: 19,
+              baseVisits: BASE_VISITOR_COUNT,
               totalLeads: mockLeads.length,
               newLeads: mockLeads.filter((l) => l.status === "NEW").length,
               inProgressLeads: mockLeads.filter(
@@ -81,11 +84,16 @@ export async function GET() {
       (l) => l.status === "CONTACTED" || l.status === "DISCUSSING" || l.status === "QUOTATION"
     ).length;
 
+    const rawVisits = visitsCount ?? 0;
+    const totalVisits = calculateTotalVisits(rawVisits);
+
     return NextResponse.json({
       ok: true,
       data: {
         stats: {
-          totalVisits: visitsCount ?? 0,
+          totalVisits,
+          rawVisits,
+          baseVisits: BASE_VISITOR_COUNT,
           totalLeads,
           newLeads,
           inProgressLeads,
